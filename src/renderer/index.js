@@ -45,14 +45,45 @@ const HostConfig = {
 		const element = document.createElement(type)
 		element.className = newProps.className || ''
 		element.style = newProps.style
+		if (newProps.onClick) {
+			element.addEventListener('click', newProps.onClick)
+		}
 		return element
+	},
+
+	prepareUpdate: function(
+		instance,
+		type,
+		oldProps,
+		newProps,
+		rootContainerInstance,
+		currentHostContext
+	) {
+		console.log(
+			'prepareUpdate',
+			instance,
+			type,
+			oldProps,
+			newProps,
+			rootContainerInstance,
+			currentHostContext
+		)
+		return
+	},
+	commitUpdate: function(instance, updatePayload, type, oldProps, newProps, finishedWork) {
+		console.log('commitUpdate', instance, updatePayload, type, oldProps, newProps, finishedWork)
+		return
+	},
+	commitTextUpdate: function(textInstance, oldText, newText) {
+		console.log('commitTextUpdate', textInstance, oldText, newText)
+		textInstance.nodeValue = newText
 	},
 	appendInitialChild: function(parent, child) {
 		console.log('appendInitialChild', parent, child)
 		parent.appendChild(child)
 	},
 	shouldSetTextContent: function(type, nextProps) {
-		console.log('shouldsetTextContent', type, nextProps)
+		console.log('shouldSetTextContent', type, nextProps)
 		return false
 	},
 
@@ -91,6 +122,33 @@ const HostConfig = {
 	},
 	removeChildFromContainer: function(...args) {
 		console.log('removeChildFromContainer', ...args)
+	},
+	appendChild: function(parentInstance, child) {
+		console.log('appenChild', parentInstance, child)
+		parentInstance.appendChild(child)
+	},
+	insertBefore: function(parentInstance, child, beforeChild) {
+		console.log('insertBefore', parentInstance, child, beforeChild)
+		parentInstance.insertBefore(child, beforeChild)
+	},
+	removeChild: function(parentInstance, child) {
+		console.log('removeChild', parentInstance, child)
+		parentInstance.removeChild(child)
+	},
+	insertInContainerBefore: function(container, child, beforeChild) {
+		console.log('insertInContainerBefore', container, child, beforeChild)
+		container.insertBefore(child, beforeChild)
+	},
+	removeChildFronContainer: function(container, child) {
+		console.log('removeChildFromContainer', container, child)
+		container.removeChild(child)
+	},
+	resetTextContent: function(domElment) {
+		console.log('resetTextContent', domElment)
+	},
+	shouldDeprioritizeSubtree: function(type, nextProps) {
+		console.log('shouldDeprioritizeSubtree', type, nextProps)
+		return !!nextProps.hidden
 	},
 	supportsMutation: true
 }
