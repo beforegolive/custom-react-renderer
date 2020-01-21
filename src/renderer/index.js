@@ -81,6 +81,7 @@ const HostConfig = {
 		console.log('resetAfterCommit', ...args)
 	},
 	commitMount: function(domElement, type, newProps, fiberNode) {
+		console.log('commitMount', domElement, type, newProps, fiberNode)
 		domElement.focus()
 	},
 
