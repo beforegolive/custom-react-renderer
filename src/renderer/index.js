@@ -86,8 +86,7 @@ const HostConfig = {
 	},
 
 	appendChildToContainer: (parent, child) => {
-		console.log('appendChildToContainer child', child)
-		console.log('appendChildToContainer parent', parent)
+		console.log('appendChildToContainer ', parent, child)
 		if (child !== undefined) parent.appendChild(child)
 	},
 	removeChildFromContainer: function(...args) {
